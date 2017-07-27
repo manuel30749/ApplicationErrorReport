@@ -14,7 +14,8 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 public class App_Catalog {	
 	
 	private int idApp;
-	private String App;	
+	private String App;
+	//
 		
 	@Id
 	@GeneratedValue
