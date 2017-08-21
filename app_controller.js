@@ -60,23 +60,29 @@ App.controller('AppController', ['$scope', '$http', function($scope, $http){
 						'Content-Type': 'application/json'
 					}
 				}).then(function(response) {			
-					if(response){						
-						
+					if(response){					
 						swal(
 							    'Update!',
 							    'The application has changed.',
 							    'success'
-							);	
-						
+							);						
 						$('#myModalAppModify').modal('hide');
+						
+						$('.modal').on('hidden.bs.modal', function(e) { 
+							$(".modal-body input").val("");
+							$('#optsModify').val('');
+							$("#optsModify")[0].selectedIndex = 0;
+							$(this).removeData();
+						}); 
+						
 					}
 					else
 						alert("in fail");
-					//$('#error_reportForm')[0].reset();
-					$route.reload();
+					
+					
 				}, function (responseError){
 					alert(responseError.status + " " + responseError.data);
-				});
+				});				
 				
 			}, function (dismiss) {
 			  // dismiss can be 'cancel', 'overlay',
@@ -242,4 +248,16 @@ App.controller('AppController', ['$scope', '$http', function($scope, $http){
 			});
 		}
 	};
+	
+//	$scope.resetForm = function(){	
+//		
+//		//location.reload();
+//	    // Resets the form validation state.
+//	    //$scope.error_reportForm.$setPristine();
+//	    // Broadcast the event to also clear the grid selection.
+//	    //$rootScope.$broadcast('clear');
+//		
+//	};
+	
+	
 }]);
